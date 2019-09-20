@@ -133,6 +133,11 @@ exports.login = function(req, res){
                status:'error',
                message:'Login failed, Username or password is wrong.'
            });
+        }else if(user.active === false){
+            res.json({
+                status:'error',
+                message:'User account is not active.'
+            });
         }else{
             res.json({
                 status:'success',
