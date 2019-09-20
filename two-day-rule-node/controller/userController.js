@@ -22,29 +22,42 @@ exports.index = function(req, res){
 
 //Create new user
 exports.new = function (req, res){
-    var newUser = new User();
-    newUser.username = req.body.username;
-    newUser.passwordHash = crypto.createHash('sha256').update(req.body.password).digest('base64');
-    newUser.name = req.body.name;
-    newUser.surname = req.body.surname;
-    newUser.dateOfBirth = req.body.dateOfBirth;
-    newUser.authKey = uuidv4();
-
-    //Saving the user and checking for errors
-    newUser.save(function(err){
+    //Checking if the user exists
+    User.findOne({username: req.body.username}, function(err, user){
         if(err){
+            res.json(err);
+        }else if(user !== null){
             res.json({
-                status:'error',
-                message:'There was a problem creating the user.'
+                status:'Error',
+                message:'Username already exists.'
             });
         }else{
-            res.json({
-                status:'success',
-                message:'New user added successfuly.',
-                data: newUser
+            //if the user is not found, then we try to create the new user
+            var newUser = new User();
+            newUser.username = req.body.username;
+            newUser.passwordHash = crypto.createHash('sha256').update(req.body.password).digest('base64');
+            newUser.name = req.body.name;
+            newUser.surname = req.body.surname;
+            newUser.dateOfBirth = req.body.dateOfBirth;
+            newUser.authKey = uuidv4();
+
+            //Saving the user and checking for errors
+            newUser.save(function(err){
+                if(err){
+                    res.json({
+                        status:'error',
+                        message:'There was a problem creating the user.'
+                    });
+                }else{
+                    res.json({
+                        status:'success',
+                        message:'New user added successfuly.',
+                        data: newUser
+                    });
+                }
             });
         }
-    });
+    })
 };
 
 //Getting the user by userId
