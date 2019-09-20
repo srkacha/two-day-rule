@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 
 var progressSchema = mongoose.Schema({
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     habitId:{
         type: mongoose.Schema.Types.ObjectId,
         required: true
