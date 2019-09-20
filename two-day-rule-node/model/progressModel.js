@@ -1,0 +1,26 @@
+var mongoose = require('mongoose');
+
+var progressSchema = mongoose.Schema({
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    habitId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    date:{
+        type: Date,
+        required: true
+    },
+    comment:{
+        type: String,
+        required: false
+    }
+});
+
+var Progress = module.exports = mongoose.model('progress', progressSchema);
+
+module.exports.get = function (callback, limit){
+    Progress.find(callback).limit(limit);
+}
