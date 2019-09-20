@@ -11,7 +11,8 @@ var habitSchema = mongoose.Schema({
     },
     dateStarted:{
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     active:{
         type: Boolean,

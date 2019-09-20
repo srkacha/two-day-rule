@@ -11,7 +11,8 @@ var progressSchema = mongoose.Schema({
     },
     date:{
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     comment:{
         type: String,
