@@ -83,6 +83,11 @@ exports.update = function(req, res){
     User.findById(req.params.userId, function(err, user){
         if(err){
             res.json(err);
+        }else if(user === null){
+            res.json({
+                status:'error',
+                message:'User with the given ID does not exist.'
+            });
         }else{
             user.name = req.body.name;
             user.surname = req.body.surname;

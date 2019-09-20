@@ -34,3 +34,31 @@ exports.getAllForUserId = function(req, res){
         }
     });
 }
+
+//Update habit for habitId, updating possible on name and description
+exports.update = function(req, res){
+    Habit.findById(req.params.habitId, function(err, user){
+        if(err){
+            res.json(err);
+        }else if(habit === null){
+            res.json({
+                status:'error',
+                message:'Habit with the given ID does not exist.'
+            });
+        }else{
+            habit.name = req.body.name;
+            habit.description = req.body.description;
+            habit.save(function(err){
+                if(err){
+                    res.json(err);
+                }else{
+                    res.json({
+                        status:'success',
+                        message:'Habit data updated successfuly.',
+                        data: habit
+                    });
+                }
+            });
+        }
+    });
+}
