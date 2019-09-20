@@ -37,7 +37,7 @@ exports.getAllForUserId = function(req, res){
 
 //Update habit for habitId, updating possible on name and description
 exports.update = function(req, res){
-    Habit.findById(req.params.habitId, function(err, user){
+    Habit.findById(req.params.habitId, function(err, habit){
         if(err){
             res.json(err);
         }else if(habit === null){
