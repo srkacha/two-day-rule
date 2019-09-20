@@ -115,6 +115,11 @@ exports.login = function(req, res){
     User.findOne({username: req.body.username, passwordHash: passwordHash}, function(err, user){
         if(err){
             res.json(err);
+        }else if(user === null){
+           res.json({
+               status:'error',
+               message:'Login failed, Username or password is wrong.'
+           });
         }else{
             res.json({
                 status:'success',

@@ -11,13 +11,13 @@ let app = express();
 //Setting up the server port
 var port = process.env.PORT || 8080;
 
-//Using the api routes in the app
-app.use('/api', apiRoutes);
-
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+//Using the api routes in the app
+app.use('/api', apiRoutes);
 
 app.use(bodyParser.json());
 
