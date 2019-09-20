@@ -16,7 +16,8 @@ var habitSchema = mongoose.Schema({
     },
     active:{
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     userId:{
         type: mongoose.Schema.Types.ObjectId,
