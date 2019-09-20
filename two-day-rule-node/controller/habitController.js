@@ -13,7 +13,7 @@ exports.new = function(req,res){
         }else{
             res.json({
                 status:'success',
-                message:'New habbit added successfuly.',
+                message:'New habit added successfuly.',
                 data: newHabit
             });
         }
@@ -22,7 +22,7 @@ exports.new = function(req,res){
 
 //Get habits for userId
 exports.getAllForUserId = function(req, res){
-    Habit.find({userId: req.params.userId}, function(err, habits){
+    Habit.find({userId: req.params.userId, active: true}, function(err, habits){
         if(err){
             res.json(err);
         }else{
@@ -57,6 +57,27 @@ exports.update = function(req, res){
                         message:'Habit data updated successfuly.',
                         data: habit
                     });
+                }
+            });
+        }
+    });
+}
+
+//Deactivating the existing habit
+exports.delete = function(req, res){
+    Habit.findById(req.params.habitId, function(err, habit){
+        if(err){
+            res.json(err);
+        }else{
+            habit.active = false;
+            habit.save(function(err){
+                if(err){
+                    res.json(err);
+                }else{
+                    res.json({
+                        status:'success',
+                        message: 'Habit removed succesfully.'
+                    })
                 }
             });
         }

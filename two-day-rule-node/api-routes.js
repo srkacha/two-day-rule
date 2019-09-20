@@ -24,9 +24,14 @@ router.route('/users/register')
 router.route('/users/login')
     .post(userController.login);
 
+
 //Adding routes for the Habit API
 router.route('/habits')
     .post(habitController.new);
+
+router.route('/habits/:habitId')
+    .put(habitController.update)
+    .delete(habitController.delete);
 
 router.route('/habits/user/:userId')
     .get(habitController.getAllForUserId);
