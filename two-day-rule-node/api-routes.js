@@ -1,6 +1,7 @@
 let router = require('express').Router();
 var userController = require('./controller/userController');
 var habitController = require('./controller/habitController');
+var progressController = require('./controller/progressController');
 
 router.get('/', function(req, res){
     res.json({
@@ -35,6 +36,16 @@ router.route('/habits/:habitId')
 
 router.route('/habits/user/:userId')
     .get(habitController.getAllForUserId);
+
+//Adding routes for the progress API
+router.route('/progress')
+    .post(progressController.new);
+
+router.route('/progress/habit/:habitId')
+    .get(progressController.getAllForHabitId);
+
+router.route('/progress/:progressId')
+    .delete(progressController.delete);
 
 //Exporting the API routes
 module.exports = router;
