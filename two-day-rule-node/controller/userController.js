@@ -144,7 +144,8 @@ exports.login = function(req, res){
                 message:'User account is not active.'
             });
         }else{
-            res.json({
+            const token = user.generateAuthToken();
+            res.header('x-access-token', token).json({
                 status:'success',
                 message:'Login successful.',
                 data:user

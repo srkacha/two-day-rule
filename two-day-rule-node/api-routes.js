@@ -1,9 +1,10 @@
 const router = require('express').Router();
+const auth = require('./authorization/auth');
 const userController = require('./controller/userController');
 const habitController = require('./controller/habitController');
 const progressController = require('./controller/progressController');
 
-router.get('/', function(req, res){
+router.get('/', auth, function(req, res){
     res.json({
         status: 'API is working',
         message: 'The Two Day Rule API'
@@ -11,13 +12,12 @@ router.get('/', function(req, res){
 }); 
 
 //Adding the routes for the User API
-router.route('/users')
-    .get(userController.index);
+router.get('/users',auth, userController.index);
 
 router.route('/users/:userId')
-    .get(userController.view)
-    .put(userController.update)
-    .delete(userController.delete);
+    .get(auth, userController.view)
+    .put(auth, userController.update)
+    .delete(auth, userController.delete);
 
 router.route('/users/register')
     .post(userController.new);
@@ -27,24 +27,24 @@ router.route('/users/login')
 
 //Adding routes for the Habit API
 router.route('/habits')
-    .post(habitController.new);
+    .post(auth, habitController.new);
 
 router.route('/habits/:habitId')
-    .put(habitController.update)
-    .delete(habitController.delete);
+    .put(auth, habitController.update)
+    .delete(auth, habitController.delete);
 
 router.route('/habits/user/:userId')
-    .get(habitController.getAllForUserId);
+    .get(auth, habitController.getAllForUserId);
 
 //Adding routes for the progress API
 router.route('/progress')
-    .post(progressController.new);
+    .post(auth, progressController.new);
 
 router.route('/progress/habit/:habitId')
-    .get(progressController.getAllForHabitId);
+    .get(auth, progressController.getAllForHabitId);
 
 router.route('/progress/:progressId')
-    .delete(progressController.delete);
+    .delete(auth, progressController.delete);
 
 //Exporting the API routes
 module.exports = router;
