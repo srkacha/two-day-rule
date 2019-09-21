@@ -3,6 +3,7 @@ const express = require('express');
 const apiRoutes = require('./api-routes');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const config = require('config');
 
 
 //Initializing the app
@@ -22,7 +23,7 @@ app.use('/api', apiRoutes);
 app.use(bodyParser.json());
 
 //Connecting to the database and setting the database variable
-mongoose.connect('mongodb://localhost/two_day_rule', { useNewUrlParser: true});
+mongoose.connect(config.get('db_connection'), { useNewUrlParser: true});
 var db = mongoose.connection;
 
 // Added check for DB connection

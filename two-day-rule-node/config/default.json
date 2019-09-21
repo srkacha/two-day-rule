@@ -1,3 +1,4 @@
 {
-    "myprivatekey": "jovalegenda"
-   }
+    "myprivatekey": "jovalegenda",
+    "db_connection":"mongodb+srv://sjovic:srkacha4ugfs@twodayrule-cluster-1-ifjxj.azure.mongodb.net/two_day_rule_db?retryWrites=true&w=majority"
+}
