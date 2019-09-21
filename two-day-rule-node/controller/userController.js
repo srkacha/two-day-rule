@@ -1,6 +1,6 @@
-var User = require('../model/userModel');
-var crypto = require('crypto');
-var uuidv4 = require('uuid/v4');
+const User = require('../model/userModel');
+const crypto = require('crypto');
+const uuidv4 = require('uuid/v4');
 
 //Get all
 exports.index = function(req, res){

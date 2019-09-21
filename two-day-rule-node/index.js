@@ -1,8 +1,8 @@
 //Importing modules used in the app
-let express = require('express');
-let apiRoutes = require('./api-routes');
-let mongoose = require('mongoose');
-let bodyParser = require('body-parser');
+const express = require('express');
+const apiRoutes = require('./api-routes');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 
 //Initializing the app

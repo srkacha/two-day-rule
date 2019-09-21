@@ -1,7 +1,7 @@
-let router = require('express').Router();
-var userController = require('./controller/userController');
-var habitController = require('./controller/habitController');
-var progressController = require('./controller/progressController');
+const router = require('express').Router();
+const userController = require('./controller/userController');
+const habitController = require('./controller/habitController');
+const progressController = require('./controller/progressController');
 
 router.get('/', function(req, res){
     res.json({
@@ -24,7 +24,6 @@ router.route('/users/register')
 
 router.route('/users/login')
     .post(userController.login);
-
 
 //Adding routes for the Habit API
 router.route('/habits')

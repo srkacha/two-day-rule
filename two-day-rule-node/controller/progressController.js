@@ -1,4 +1,4 @@
-var Progress = require('../model/progressModel');
+const Progress = require('../model/progressModel');
 
 //New progress
 exports.new = function(req,res){

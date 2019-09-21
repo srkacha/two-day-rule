@@ -1,4 +1,4 @@
-var Habit = require('../model/habitModel');
+const Habit = require('../model/habitModel');
 
 //Create new
 exports.new = function(req,res){
